@@ -5,6 +5,7 @@ Code for precisely calculating the density of sodum chloride solutions.
 import numpy, scipy.optimize
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
+import sys
 
 def get_constants():
 
@@ -64,12 +65,21 @@ def plot():
     plt.show()
 
 if __name__ == "__main__":
-    H2O_mass = float(raw_input("Enter H2O mass: "))
-    NaCl_mass = float(raw_input("Enter NaCl mass: "))
-    t = float(raw_input("Enter temperature (C): "))
+    if len(sys.argv) == 1:
+        H2O_mass = float(raw_input("Enter H2O mass: "))
+        NaCl_mass = float(raw_input("Enter NaCl mass: "))
+        t = float(raw_input("Enter temperature (C): "))
+    elif len(sys.argv) == 4:
+        H2O_mass = float(sys.argv[1])
+        NaCl_mass = float(sys.argv[2])
+        t = float(sys.argv[3])
+    else:
+        print "USAGE:    python NaCl.py mass_of_H2O mass_of_NaCl temperature_in_Celsius"
+        print "EXAMPLE:  python NaCl.py 10.416 1.013 37"
+        exit()
     m = NaCl_mass / H2O_mass
     a, b, c, d, e = get_constants()
     print a*t**2 + b*t + c*m**2 + d*m + e
-    
+
     
     
