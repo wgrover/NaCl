@@ -8,7 +8,14 @@ import matplotlib.pyplot as plt
 import sys
 
 def get_constants():
-
+    """Returns fit constants derived from CRC Handbook data.
+    
+    Args:
+        currently none.
+        
+    Returns:
+        A list of five constants (a, b, c, d, e) as defined above.
+    """
     temperatures = [20.0, 25.0, 30.0, 40.0]
     molalities = numpy.array([0.100, 0.250, 0.500, 0.750, 1.000, 2.000, 3.000, 4.000, 5.000])
 
@@ -55,6 +62,7 @@ def get_constants():
     return a, b, c, d, e
 
 def plot():
+    
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
     ax.plot(x, y, ztable, "ro")
@@ -64,7 +72,9 @@ def plot():
     ax.set_zlabel("Density (g/mL)")
     plt.show()
 
-if __name__ == "__main__":
+def main():
+    """
+    """
     if len(sys.argv) == 1:
         H2O_mass = float(raw_input("Enter H2O mass: "))
         NaCl_mass = float(raw_input("Enter NaCl mass: "))
@@ -80,6 +90,10 @@ if __name__ == "__main__":
     m = NaCl_mass / H2O_mass
     a, b, c, d, e = get_constants()
     print a*t**2 + b*t + c*m**2 + d*m + e
+
+if __name__ == "__main__":
+    main()
+
 
     
     
