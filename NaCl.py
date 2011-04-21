@@ -8,13 +8,21 @@ import matplotlib.pyplot as plt
 import sys
 
 def get_constants():
-    """Returns fit constants derived from CRC Handbook data.
+    """Returns fit constants for calculating the density of a sodium chloride solution.
+    
+    The method returns constants (a, b, c, d, e) for the equation
+    
+        density = a*t**2 + b*t + c*m**2 + d*m + e
+        
+    where density is in g/mL, t is temperature in C, and m is the mass ratio
+    
+        m = (mass of NaCl) / (mass of water)
     
     Args:
         currently none.
         
     Returns:
-        A list of five constants (a, b, c, d, e) as defined above.
+        A list of the five constants (a, b, c, d, e) defined above.
     """
     temperatures = [20.0, 25.0, 30.0, 40.0]
     molalities = numpy.array([0.100, 0.250, 0.500, 0.750, 1.000, 2.000, 3.000, 4.000, 5.000])
